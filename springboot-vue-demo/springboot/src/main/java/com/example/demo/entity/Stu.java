@@ -7,7 +7,7 @@ import lombok.Data;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//@TableName("/student")
+@TableName("student")
 @Data
 public class Stu {
     @TableId(value = "stu_sno",type = IdType.AUTO)
@@ -16,6 +16,4 @@ public class Stu {
     private String college;
     private String pwd;
 
-    public Stu(Integer sno, String name, String college, String pwd) {
-    }
 }

@@ -21,14 +21,25 @@ public class AdminController {
 
     @Resource
     AdminMapper adminMapper;
-    @PostMapping
-    public Result<?> save(@RequestBody administrator admin){
+    @PostMapping("/save")
+    public Result<course> save(@RequestBody administrator admin){
         adminMapper.insert(admin);
         return Result.success();
     }
-    @GetMapping
-    public Result<?> getAdmininf(@RequestParam String search){
-        List<administrator> adminList =  adminMapper.selectList(Wrappers.<administrator>lambdaQuery().eq(administrator::getSno,search));
-        return Result.success(adminList);
+    @GetMapping("/{sno}")
+    public Result<administrator> get(@PathVariable Integer sno){
+        administrator object = adminMapper.selectById(sno);
+        return Result.success(object);
+    }
+    @PostMapping("/delete")
+    public Result<administrator> delete(@PathVariable Integer sno){
+        adminMapper.deleteById(sno);
+        return Result.success();
+    }
+
+    @PostMapping("/Update")
+    public Result<administrator> update(@RequestBody administrator admin){
+        adminMapper.updateById(admin);
+        return Result.success();
     }
 }

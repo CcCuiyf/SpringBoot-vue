@@ -13,4 +13,6 @@ public class course {
     private String subject;
     private String leader_name;
 
+    public course(Integer id, String subject, String leader_name) {
+    }
 }

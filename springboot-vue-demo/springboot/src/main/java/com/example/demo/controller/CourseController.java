@@ -18,18 +18,25 @@ public class CourseController {
     @Resource
     CourseMapper courseMapper;
     @PostMapping("/save")
-    public Result<course> saveCourse(@RequestBody course cou){
+    public Result<course> save(@RequestBody course cou){
         courseMapper.insert(cou);
         return Result.success();
     }
     @GetMapping("/{id}")
-    public Result<course> getCourseinf(@PathVariable Integer id){
+    public Result<course> get(@PathVariable Integer id){
        course object = courseMapper.selectById(id);
         return Result.success(object);
     }
-//    @GetMapping()
-//    public Result<List<course>> getCourseinf(){
-//        List<course>  courseList = courseMapper.selectList(null);
-//        return Result.success(courseList);
-//    }
+    @PostMapping("/delete")
+    public Result<course> delete(@PathVariable Integer id){
+        courseMapper.deleteById(id);
+        return Result.success();
+    }
+
+    @PostMapping("/Update")
+    public Result<course> update(@RequestBody course cou){
+        courseMapper.updateById(cou);
+        return Result.success();
+    }
+
 }
