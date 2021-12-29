@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-@TableName("administrator")
+//@TableName("administrator")
 @Data
 public class administrator {
     @TableId(value = "sno",type = IdType.AUTO)

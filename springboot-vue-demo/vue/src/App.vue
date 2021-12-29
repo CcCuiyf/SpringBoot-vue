@@ -2,7 +2,9 @@
   <div>
     <Header />
   </div>
+
   <router-view/>
+
 </template>
 
 <style>
@@ -15,5 +17,6 @@
     components:{
       Header
     }
+
   }
 </script>

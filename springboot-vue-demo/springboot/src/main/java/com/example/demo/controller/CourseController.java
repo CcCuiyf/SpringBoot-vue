@@ -17,14 +17,19 @@ public class CourseController {
 
     @Resource
     CourseMapper courseMapper;
-    @PostMapping
-    public Result<?> save(@RequestBody course course){
-        courseMapper.insert(course);
+    @PostMapping("/save")
+    public Result<course> saveCourse(@RequestBody course cou){
+        courseMapper.insert(cou);
         return Result.success();
     }
-    @GetMapping
-    public Result<?> getCourseinf(@RequestParam String search){
-        List<course> courseList = courseMapper.selectList(Wrappers.<course>lambdaQuery().eq(course::getId,search));
-        return Result.success(courseList);
+    @GetMapping("/{id}")
+    public Result<course> getCourseinf(@PathVariable Integer id){
+       course object = courseMapper.selectById(id);
+        return Result.success(object);
     }
+//    @GetMapping()
+//    public Result<List<course>> getCourseinf(){
+//        List<course>  courseList = courseMapper.selectList(null);
+//        return Result.success(courseList);
+//    }
 }
