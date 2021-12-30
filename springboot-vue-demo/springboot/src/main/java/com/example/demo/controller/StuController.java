@@ -5,15 +5,15 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.demo.commen.Result;
-import com.example.demo.entity.Stu;
-import com.example.demo.entity.course;
-import com.example.demo.entity.leader;
+import com.example.demo.entity.*;
 import com.example.demo.mapper.CourseMapper;
+import com.example.demo.mapper.SCMapper;
 import com.example.demo.mapper.StuMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.*;
 
 @ResponseBody
 @RestController
@@ -43,4 +43,7 @@ public class StuController {
         stuMapper.updateById(stu);
         return Result.success();
     }
+
+
+
 }

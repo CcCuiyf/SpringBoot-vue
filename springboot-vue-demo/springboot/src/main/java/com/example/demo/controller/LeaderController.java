@@ -1,16 +1,15 @@
 package com.example.demo.controller;
 
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.example.demo.commen.Result;
-import com.example.demo.entity.L_C;
 import com.example.demo.entity.course;
 import com.example.demo.entity.leader;
+import com.example.demo.entity.showLC;
 import com.example.demo.mapper.CourseMapper;
-import com.example.demo.mapper.LCMapper;
 import com.example.demo.mapper.LeaderMapper;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -43,8 +42,23 @@ public class LeaderController {
         return Result.success();
     }
 
-    LCMapper lcMapper;
+    @Resource
     CourseMapper courseMapper;
+    @GetMapping("/show/{lname}")
+    public Result<List<showLC>> show(@PathVariable String lname){
+        ArrayList<showLC> showLCS = new ArrayList<showLC>();
+        showLC slc = new showLC();
+        for(int i=1;i<=5;++i){
+            course c = courseMapper.selectById(i);
+            if(c == null) break;
+            else if(c.getLeader_name().equals(lname)){
+                slc.setSubject(c.getSubject());
+                slc.setLname(c.getLeader_name());
+                showLCS.add(slc);
+            }
+        }
+        return Result.success(showLCS);
+    }
 
 //    @PostMapping("/addCourse")
 //    //教师姓名、课程名称、教师编号、课程编号
