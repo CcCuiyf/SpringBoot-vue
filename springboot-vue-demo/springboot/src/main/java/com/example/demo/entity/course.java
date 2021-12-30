@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class course {
     @TableId(type = IdType.AUTO)
-    private Integer id;
+    private String id;
     private String subject;
     private String leader_name;
 

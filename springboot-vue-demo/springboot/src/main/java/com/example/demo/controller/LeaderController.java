@@ -25,13 +25,13 @@ public class LeaderController {
     }
 
     @GetMapping("/{leader_sno}")
-    public Result<leader> get(@PathVariable Integer leader_sno){
+    public Result<leader> get(@PathVariable String leader_sno){
         leader object = leaderMapper.selectById(leader_sno);
         return Result.success(object);
     }
 
     @PostMapping("/delete")
-    public Result<leader> delete(@PathVariable Integer leader_sno){
+    public Result<leader> delete(@PathVariable String leader_sno){
         leaderMapper.deleteById(leader_sno);
         return Result.success();
     }

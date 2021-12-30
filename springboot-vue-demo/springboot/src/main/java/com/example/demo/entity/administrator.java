@@ -9,9 +9,9 @@ import lombok.Data;
 @Data
 public class administrator {
     @TableId(value = "sno",type = IdType.AUTO)
-    private Integer sno;
+    private String sno;
     private String name;
-    private Integer power_id;
+    private String power_id;
     private String pwd;
 
 }

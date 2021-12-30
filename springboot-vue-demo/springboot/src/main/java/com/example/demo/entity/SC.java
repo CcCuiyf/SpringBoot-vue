@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class SC {
     @TableId(value = "sc",type = IdType.AUTO)
-    private Integer sc;
-    private Integer sno;
-    private Integer id;
+    private String sc;
+    private String sno;
+    private String id;
 }

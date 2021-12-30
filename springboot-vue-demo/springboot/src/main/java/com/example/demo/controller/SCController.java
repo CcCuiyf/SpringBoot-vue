@@ -31,7 +31,7 @@ public class SCController {
     @Resource
     StuMapper stuMapper;
     @GetMapping("/xuanke/{sno}")
-    public Result<List<showSC>> search(@PathVariable Integer sno){
+    public Result<List<showSC>> show(@PathVariable String sno){
         ArrayList<showSC> scs = new ArrayList<showSC>() ;
         showSC show = new showSC();
         int j=0;

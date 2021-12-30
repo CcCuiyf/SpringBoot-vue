@@ -1,73 +1,57 @@
 <template>
   <div>
-    <el-button type="text" @click="dialogVisible = true">点击打开 Dialog</el-button>
-<!--    <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="date" label="Date" width="180" />
-      <el-table-column prop="name" label="Name" width="180" />
-      <el-table-column prop="address" label="Address" />
-    </el-table> -->
-    <el-dialog
-            title="提示"
-            :v-model="dialogVisible"
-            width="30%">
-      <span>这是一段信息</span>
-      <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-  </span>
-    </el-dialog>
+    <el-table :data="tableData" height="calc(100vh - 50px)" style="width: 100%">
+      <el-table-column prop="id" label="课程号" style="text-align: center" />
+      <el-table-column prop="sno" label="科目" style="text-align: center" />
+      <el-table-column
+        prop="leader_name"
+        label="leader"
+        style="text-align: center"
+      />
+      <el-table-column fixed="right" label="操作" width="120">
+        <template #default>
+          <el-button type="text" size="small" @click="handleEdit"
+            >报名</el-button
+          >
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+
+
+import request from "../utils/resourse";
+
+let sno = sessionStorage.getItem('user')
+let cnt = sno+'1'
+
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
   },
-    data(){
+  created(){
+    this.load()
+  },
 
-      dialogVisible:false
-
-      return {
-        tableData: [ {
-          date: '2016-05-03',
-          name: 'Tom',
-          address: 'No. 189, Grove St, Los Angeles',
-        },
-          {
-            date: '2016-05-02',
-            name: 'Tom',
-            address: 'No. 189, Grove St, Los Angeles',
-          },
-          {
-            date: '2016-05-04',
-            name: 'Tom',
-            address: 'No. 189, Grove St, Los Angeles',
-          },
-          {
-            date: '2016-05-01',
-            name: 'Tom',
-            address: 'No. 189, Grove St, Los Angeles',
-          },
-        ],
-      }
-    },
+  data() {
+    return {
+      cnt,
+      tableData: [],
+    };
+  },
   methods:{
-    add(){
-      //print("11")
+    handleEdit() {
+      request.post("/xuanke",this.tableData)
     },
-    handleClose(done) {
-      this.$confirm('确认关闭？')
-              .then(_ => {
-                done();
-              })
-              .catch(_ => {});
+    load(){
+      request.get("/course/all").then(res =>{
+        this.tableData = res.data
+      })
     }
   }
-}
-
-
+};
 </script>

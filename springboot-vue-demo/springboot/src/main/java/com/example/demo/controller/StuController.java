@@ -28,12 +28,13 @@ public class StuController {
         return Result.success();
     }
     @GetMapping("/{stu_sno}")
-    public Result<Stu> get(@PathVariable Integer stu_sno){
+    public Result<Stu> get(@PathVariable String stu_sno){
+        //System.out.println(stu_sno);
         Stu object =stuMapper.selectById(stu_sno);
         return Result.success(object);
     }
-    @PostMapping("/delete")
-    public Result<Stu> delete(@PathVariable Integer stu_sno){
+    @PostMapping("/delete/{stu_sno}")
+    public Result<Stu> delete(@PathVariable String stu_sno){
         stuMapper.deleteById(stu_sno);
         return Result.success();
     }

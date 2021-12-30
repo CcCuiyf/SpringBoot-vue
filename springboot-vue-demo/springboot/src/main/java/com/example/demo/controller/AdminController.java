@@ -27,12 +27,12 @@ public class AdminController {
         return Result.success();
     }
     @GetMapping("/{sno}")
-    public Result<administrator> get(@PathVariable Integer sno){
+    public Result<administrator> get(@PathVariable String sno){
         administrator object = adminMapper.selectById(sno);
         return Result.success(object);
     }
-    @PostMapping("/delete")
-    public Result<administrator> delete(@PathVariable Integer sno){
+    @PostMapping("/delete/{sno}")
+    public Result<administrator> delete(@PathVariable String sno){
         adminMapper.deleteById(sno);
         return Result.success();
     }

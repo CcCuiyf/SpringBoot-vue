@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Data
 public class Stu {
     @TableId(value = "stu_sno",type = IdType.AUTO)
-    private Integer stu_sno;
+    private String stu_sno;
     private String name;
     private String college;
     private String pwd;
